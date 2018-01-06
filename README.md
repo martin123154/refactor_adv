@@ -721,26 +721,74 @@ X  [101]:TooManyStatements: Game#opponent_round has approx 8 statements [https:/
   [53]:TooManyStatements: Game#set_hit_rules has approx 8 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
   X[36]:TooManyStatements: Game#set_opponent has approx 6 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
 
+# FeatureEnvy
 
-[36]:TooManyStatements: Game#set_opponent h
+```
+X [165, 166]:FeatureEnvy: Game#get_position_input refers to 'input' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
+ X [165, 166]:FeatureEnvy: Game#get_position_input refers to 'position' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
+ 
+ ```
+ 
+ Przed:
+ 
+  ```
+ def get_position_input
+		position = {}
+		input = gets.chomp.rstrip.upcase
+		position[:row] = Board::ROW.rindex(input.split(//, 2)[0])
+		position[:column] = Board::COLUMN.rindex(input.split(//, 2)[1])
+		return position
+	end
+ ```	
+	
+Po:
 
-	def set_opponent
-		creating_player
-		Board::ROW.each do |row|
-			Board::COLUMN.each do |column|
-				@opp_targeting_queue << [row, column]
-			end
-		end
-		@opp_targeting_queue.shuffle!   #queue of random opponent shot coordinates
+ ```
+def get_position_input
+		position = {}
+		input = gets.chomp.rstrip.upcase
+		get_position_input_column(position,input)
+		get_position_input_row(position,input)
+		return position
 	end
 	
-	def create_opponent_player
-	@opponent = Player.new('Opponent')
-	@opp_targeting_queue = []
+	def get_position_input_column(position,input)
+		position[:row] = Board::ROW.rindex(input.split(//, 2)[0])
 	end
+	
+	def get_position_input_row(position,input)
+	position[:column] = Board::COLUMN.rindex(input.split(//, 2)[1])
+	end
+ 
+ ```
+ 
 
+	
 
-[101]:TooManyStatements: Game#opponent_round
+ ```
+ [101]:TooManyStatements: Game#opponent_round has approx 8 statements 
+  ```
+ 
+ Przed:
+ 
+  ```
+ def opponent_round
+		puts "\n---------- Opponent's turn ----------"
+		target_coords = opp_targeting_queue.pop
+		target = get_opp_position(target_coords[0], target_coords[1])
+		opponent_cell = @opponent.target_board.grid[target[:row]][target[:column]]
+		player_cell = @player.board.grid[target[:row]][target[:column]]
+
+		print "\nOpponent called \"#{target_coords[0]}#{target_coords[1]}\" "
+		@rulebook.shoot(player_cell,opponent_cell, @player, @rules)
+		puts "-------------------------------------\n\n"
+	end
+ ```
+ 
+ Po:
+ 
+  ```
+
 	def opponent_round
 		puts "\n---------- Opponent's turn ----------"
 		choosing_cell_by_players
@@ -761,9 +809,28 @@ X  [101]:TooManyStatements: Game#opponent_round has approx 8 statements [https:/
 		@rulebook.shoot(player_cell,opponent_cell, @player, @rules)
 		puts "-------------------------------------\n\n"
 	end
+	
+	 ```
 
-[18]:TooManyStatements: Game#play h
 
+ ```
+ 
+[18]:TooManyStatements: Game#play has approx 6 statements 
+
+ ```
+
+ ```
+def play
+		puts "\nLet's play some Battleship!\n\n"
+		set_player
+		set_opponent
+		set_hit_rules
+		deploy_fleet(@player, @opponent)
+		play_rounds
+	end
+
+ ```
+	
 	def play
 		puts "\nLet's play some Battleship!\n\n"
 		settings
@@ -776,9 +843,35 @@ X  [101]:TooManyStatements: Game#opponent_round has approx 8 statements [https:/
 		deploy_fleet(@player, @opponent)
 		play_rounds
 	end
+	
+ ```
 
+ ```
+[70]:TooManyStatements: Game#play_rounds has approx 8 statements
+ ```
 
-[70]:TooManyStatements: Game#play_rounds
+Przed:
+
+ ```
+def play_rounds
+		puts "\n\nTime to sink some ships! Good luck, #{@player.name}\n\n"
+		winner = ""
+		while winner == ""
+			@player.print_boards
+
+			player_round
+			winner = check_winner(@player, @opponent)
+
+			opponent_round
+			winner = check_winner(@opponent, @player)
+		end
+		puts "\n\n#{winner} WINS!\n\n"
+	end
+ ```
+ 
+	Po:
+	
+ ```	
 	def play_rounds
 		puts "\n\nTime to sink some ships! Good luck, #{@player.name}\n\n"
 		winner = ""
@@ -797,24 +890,102 @@ X  [101]:TooManyStatements: Game#opponent_round has approx 8 statements [https:/
 			winner = check_winner(@opponent, @player)
 		end
 	end
+	
+```
 
-[165, 166]:FeatureEnvy: Game#get_position_input refers to 'input' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
- [165, 166]:FeatureEnvy: Game#get_position_input 
+```
+[53]:TooManyStatements: Game#set_hit_rules has approx 8 statements
+```
 
-Wystêpuje, gdy fragment kodu odwo³uje siê do innego obiektu czêciej, ni¿ sam do siebie.Tak¿e gdy kilku klientów wykonuje tê sam¹ seriê manipulacji na okrelonym typie obiektu.
+Przed:
+```
+def set_hit_rules 
+		valid = false
+		while valid == false do
+			puts "\nSelect hit rules:\n		A. Standard battleship rules\n		B. Advanced rules."
+			input = gets.chomp.rstrip.upcase
+			if input == "A"
+				@rules = ClassicRules.new
+				valid = true
+			elsif input == "B"
+				@rules = AdvancedRules.new
+				valid = true
+			else 
+				puts "Invalid input. Try again."
+			end
+		end
+	end
+```	
 
-	def get_position_input
-		position = {}
-		input = gets.chomp.rstrip.upcase
-		get_position_input_column(position,input)
-		get_position_input_row(position,input)
-		return position
+Po:
+
+```
+
+def set_hit_rules 
+		@valid = false
+		while valid == false do
+			puts "\nSelect hit rules:\n		A. Standard battleship rules\n		B. Advanced rules."
+			input = gets.chomp.rstrip.upcase
+			if input == "A"
+				classic_rules()
+			elsif input == "B"
+				advanced_rules()
+			else 
+				puts "Invalid input. Try again."
+			end
+		end 
 	end
 	
-	def get_position_input_column(position,input)
-		position[:row] = Board::ROW.rindex(input.split(//, 2)[0])
+	def classic_rules()
+		@rules = ClassicRules.new
+		@valid = true
 	end
 	
-	def get_position_input_row(position,input)
-	position[:column] = Board::COLUMN.rindex(input.split(//, 2)[1])
+	def advanced_rules()
+		@rules = AdvancedRules.new
+		@valid = true
 	end
+
+
+```
+
+
+
+
+
+  [36]:TooManyStatements: Game#set_opponent has approx 6 statements 
+  
+  Przed:
+```
+def set_opponent
+		@opponent = Player.new('Opponent')
+		@opp_targeting_queue = []
+		Board::ROW.each do |row|
+			Board::COLUMN.each do |column|
+				@opp_targeting_queue << [row, column]
+			end
+		end
+		@opp_targeting_queue.shuffle!   #queue of random opponent shot coordinates
+	end
+```	
+	
+
+Po:
+  
+```
+def set_opponent
+		create_opponent_player
+		Board::ROW.each do |row|
+			Board::COLUMN.each do |column|
+				@opp_targeting_queue << [row, column]
+			end
+		end
+		@opp_targeting_queue.shuffle!   #queue of random opponent shot coordinates
+	end
+	
+	def create_opponent_player
+	@opponent = Player.new('Opponent')
+	@opp_targeting_queue = []
+	end
+	
+```
