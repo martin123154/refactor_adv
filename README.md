@@ -138,7 +138,7 @@ attr_reader :length, :hits, :fill_char
 ```
 
 
-	Finalnie
+	Finalnie należy dodac @length = length, @fill_char = fill_char by problem zniknął
 	
 	
 ```
