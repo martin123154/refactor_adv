@@ -2,20 +2,36 @@
 # REFACTORING
 47 warnings
 
+#InstanceVariableAssumption
 
+```
 ship.rb -- 2 warnings:
  X [1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@fill_char' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
   X[1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@length' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
 
-do def initialize nale�y doda�:
+```
+
+
+do def initialize nalezy dodac:
+
+```
 @length = length
 @fill_char = fill_char
+```
 
 #Attribute
 grid_cell.rb -- 2 warnings:
   X[3]:Attribute: GridCell#ship is a writable attribute [https://github.com/troessner/reek/blob/master/docs/Attribute.md]
   X[3]:Attribute: GridCell#status is a writable attribute [https://github.com/troessner/reek/blob/master/docs/Attribute.md]
 
+Zamiast:
+
+```
+
+attr_accessor :ship, :status
+
+```
+```
  def status
     @status
   end
@@ -32,7 +48,6 @@ grid_cell.rb -- 2 warnings:
     @ship = str
   end
 
-
 ```
 
 player.rb -- 5 warnings:
@@ -41,9 +56,31 @@ player.rb -- 5 warnings:
   [38, 41]:NestedIterators: Player#print_boards contains iterators nested 2 deep [https://github.com/troessner/reek/blob/master/docs/Nested-Iterators.md]
   [8]:TooManyInstanceVariables: Player has at least 9 instance variables [https://github.com/troessner/reek/blob/master/docs/Too-Many-Instance-Variables.md]
   [31]:TooManyStatements: Player#print_boards has approx 14 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
-mzelek@sigma-ng:~/PROJEKT_RUBY/solid-oczyszczalnia-refactoring-branch/lib/battleship
+
+
+Przed refaktoryzacja player.rb:
+
+
+```
+(46 linii kodu, flog score: 62.4, flay score: 0).
+
+
+```
+
+
 
  [10]:Attribute: Player#name 
+ [10]:Attribute: Player#ships_left 
+ 
+ Zamiast:
+
+```
+
+attr_accessor :ship, :status
+
+```
+
+```
 	def name
 		@name
 	end
@@ -53,7 +90,6 @@ mzelek@sigma-ng:~/PROJEKT_RUBY/solid-oczyszczalnia-refactoring-branch/lib/battle
 	end
 
 
-[10]:Attribute: Player#ships_left 
 
 def ships_left
 		@ships_left
@@ -72,8 +108,7 @@ Przed refaktoryzacja player.rb:
 (46 linii kodu, flog score: 62.4, flay score: 0).
 
 
-
-
+```
 
 ```
 board - 10 smells
@@ -93,10 +128,52 @@ board - 10 smells
 (84 linii kodu, flog score: 95.7, flay score: 42).
 
 
-// opisy na koniec
+#RepeatedConditional
+Zbyt często w klasie użyty taki sam warunek (maksymalnie może byc on użyty dwa razy)
 
- [37, 51, 65]:RepeatedConditional  --> def place_ship zmiana z 	if orientation == :horizontal na 	if orientation == :vertical (zamiana ifa)
+ [37, 51, 65]:RepeatedConditional  
+ 
+ Rozwiązanie: odwrócenie instrukcji warunkowej w jednym z przypadków
+ 
+ Początkowo:
+ ```
+ if orientation == :horizontal
+				self.grid[row][column].ship = ship
+				self.grid[row][column].status = :occupied
+				column += 1
+			else
+				self.grid[row][column].ship = ship
+				self.grid[row][column].status = :occupied
+				row += 1
+			end
+```
+
+Finalnie:
+
+```
+			
+			if orientation == :vertical
+				vertical_place_ship(row,column,ship)
+			else
+				horizontal_place_ship(row,column,ship)
+			end
+		end
+ 
+ ```
+ 
+ 
 [10]:Attribute: 
+
+
+```
+
+attr_accessor :grid
+
+```
+
+Finalnie:
+
+```
 def grid
 		@grid
 	end
@@ -104,6 +181,14 @@ def grid
 	def grid=(str) 
 		@grid = str
 	end
+	
+```
+
+#TooManyStatements 
+
+Zapach ten zazwyczaj powstaje gdy metoda jest za długa, gdyż pojawia sie gdy metoda ma więcej niż 5 linii
+Żeby wyeliminować ten zapach najczęściej rozbija sie metode na kilka poprzez grupowanie elementów wspólnych metody i wywoływanie ich z odpowiednimi argumentami
+
 
 [33]:TooManyStatements: Board#place_ship  
 utworzenie dwoch nowych metod, dodanie attr_reader row i column
@@ -153,7 +238,7 @@ rules.rb -- 13 warnings:
 X  [28]:UnusedParameters: BaseRules#choose_target has unused parameter 'player' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md]
 X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'shooterCell' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md]
 X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'target' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md]
-X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'targetCell' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md] // usuni�cie parametru
+X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'targetCell' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md] // usuniêcie parametru
 
 [35,36] FeatureEnvy
 
@@ -345,7 +430,7 @@ X  [101]:TooManyStatements: Game#opponent_round has approx 8 statements [https:/
 [165, 166]:FeatureEnvy: Game#get_position_input refers to 'input' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
  [165, 166]:FeatureEnvy: Game#get_position_input 
 
-Wyst�puje, gdy fragment kodu odwo�uje si� do innego obiektu cz�ciej, ni� sam do siebie.Tak�e gdy kilku klient�w wykonuje t� sam� seri� manipulacji na okre�lonym typie obiektu.
+Wystêpuje, gdy fragment kodu odwo³uje siê do innego obiektu czêciej, ni¿ sam do siebie.Tak¿e gdy kilku klientów wykonuje tê sam¹ seriê manipulacji na okrelonym typie obiektu.
 
 	def get_position_input
 		position = {}
