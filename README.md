@@ -153,6 +153,7 @@ attr_reader :length, :hits, :fill_char
 
 player.rb
 # Attribute
+ Smell ten pojawia sie gdy użyjemy attr_accessor na początku klasy, który służy jako getter i setter. Rozwiązanaiem problemu jest napisanie getterów i setterów metodami.
 
 ```
 [10]:Attribute: Player#name is a writable attribute
@@ -233,6 +234,7 @@ Finalnie:
  ```
  
  # Attribute
+ Smell ten pojawia sie gdy użyjemy attr_accessor na początku klasy, który służy jako getter i setter. Rozwiązanaiem problemu jest napisanie getterów i setterów metodami.
  ```
 [10]:Attribute: Board#grid is a writable attribute
 ```
@@ -707,6 +709,7 @@ def shoot()
 game.rb 
 
 # FeatureEnvy
+Wystêpuje, gdy fragment kodu odwoluje sie do innego obiektu czesciej, niz sam do siebie.Takze gdy kilku klientów wykonuje te sama serie manipulacji na okreslonym typie obiektu. Wyelimonowanie tego smella najczęściej również następuje po przegrupowaniu kodu i podzieleniu nba kilka metod
 
 ```
 X [165, 166]:FeatureEnvy: Game#get_position_input refers to 'input' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
@@ -833,6 +836,8 @@ def play
 
  ```
 [70]:TooManyStatements: Game#play_rounds has approx 8 statements
+Zapach ten zazwyczaj powstaje gdy metoda jest za długa, gdyż pojawia sie gdy metoda ma więcej niż 5 linii
+Żeby wyeliminować ten zapach najczęściej rozbija sie metode na kilka poprzez grupowanie elementów wspólnych metody i wywoływanie ich z odpowiednimi argumentami
  ```
 
 Przed:
