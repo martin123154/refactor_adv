@@ -952,8 +952,9 @@ def set_hit_rules
 
 
 
-
+```
   [36]:TooManyStatements: Game#set_opponent has approx 6 statements 
+  ```
   
   Przed:
 ```
