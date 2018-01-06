@@ -85,7 +85,7 @@ do def initialize nalezy dodac:
 
 grid.rb
 # Attribute
-Smell ten pojawia sie gdy użyjemy attr_accessor na początku klasy
+Smell ten pojawia sie gdy użyjemy attr_accessor na początku klasy, który służy jako getter i setter. Rozwiązanaiem problemu jest napisanie getterów i setterów metodami. 
 
 ```
  X[3]:Attribute: GridCell#ship is a writable attribute 
