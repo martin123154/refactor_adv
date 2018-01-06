@@ -2,8 +2,15 @@
 # REFACTORING
 47 warnings
 
-#InstanceVariableAssumption
+# InstanceVariableAssumption
 
+```
+grid_cell.rb -- 2 warnings:
+  X[3]:Attribute: GridCell#ship is a writable attribute [https://github.com/troessner/reek/blob/master/docs/Attribute.md]
+  X[3]:Attribute: GridCell#status is a writable attribute [https://github.com/troessner/reek/blob/master/docs/Attribute.md]
+  
+ ```
+  
 ```
 ship.rb -- 2 warnings:
  X [1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@fill_char' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
@@ -11,26 +18,90 @@ ship.rb -- 2 warnings:
 
 ```
 
+```
+player.rb -- 5 warnings:
+  X [10]:Attribute: Player#name is a writable attribute [https://github.com/troessner/reek/blob/master/docs/Attribute.md]
+  X[10]:Attribute: Player#ships_left is a writable attribute [https://github.com/troessner/reek/blob/master/docs/Attribute.md]
+  [38, 41]:NestedIterators: Player#print_boards contains iterators nested 2 deep [https://github.com/troessner/reek/blob/master/docs/Nested-Iterators.md]
+  [8]:TooManyInstanceVariables: Player has at least 9 instance variables [https://github.com/troessner/reek/blob/master/docs/Too-Many-Instance-Variables.md]
+  [31]:TooManyStatements: Player#print_boards has approx 14 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
 
+```
+
+```
+board - 10 smells
+  X [10]:Attribute: Board#grid is a writable attribute [https://github.com/troessner/reek/blob/master/docs/Attribute.md]
+  [65]:ControlParameter: Board#check_clearance? is controlled by argument 'orientation' [https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md]
+  [37]:ControlParameter: Board#place_ship is controlled by argument 'orientation' [https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md]
+  [51]:ControlParameter: Board#valid_coordinates? is controlled by argument 'orientation' [https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md]
+  [33, 50, 59, 75]:DataClump: Board takes parameters ['orientation', 'ship', 'start_position'] to 4 methods [https://github.com/troessner/reek/blob/master/docs/Data-Clump.md]
+  [27]:NestedIterators: Board#to_s contains iterators nested 2 deep [https://github.com/troessner/reek/blob/master/docs/Nested-Iterators.md]
+ X [37, 51, 65]:RepeatedConditional: Board tests 'orientation == :horizontal' at least 3 times [https://github.com/troessner/reek/blob/master/docs/Repeated-Conditional.md]
+  [59]:TooManyStatements: Board#check_clearance? has approx 7 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+ X [33]:TooManyStatements: Board#place_ship has approx 9 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+ X [21]:TooManyStatements: Board#to_s has approx 9 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+
+```
+```
+rules.rb -- 13 warnings:
+ X[80, 83, 86, 87, 89, 91, 93, 98]:FeatureEnvy: AdvancedRules#shoot refers to 'targetCell' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
+ X [35, 36]:FeatureEnvy: BaseRules#get_position_input refers to 'input' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
+ X [35, 36]:FeatureEnvy: BaseRules#get_position_input refers to 'position' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
+ X [43, 49, 50, 52, 54, 56]:FeatureEnvy: ClassicRules#shoot refers to 'targetCell' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
+  [2]:LongParameterList: Rules#shoot has 4 parameters [https://github.com/troessner/reek/blob/master/docs/Long-Parameter-List.md]
+  [102]:TooManyStatements: AdvancedRules#choose_target has approx 8 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+ X [79]:TooManyStatements: AdvancedRules#shoot has approx 12 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+  [61]:TooManyStatements: ClassicRules#choose_target has approx 7 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+ X [42]:TooManyStatements: ClassicRules#shoot has approx 9 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+X  [28]:UnusedParameters: BaseRules#choose_target has unused parameter 'player' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md]
+X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'shooterCell' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md]
+X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'target' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md]
+X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'targetCell' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md] // usuniêcie parametru
+```
+```
+game.rb -- 15 warnings:
+  [179, 185, 187, 192, 194]:FeatureEnvy: Game#deploy_opp_ship refers to 'opponent' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
+ X [165, 166]:FeatureEnvy: Game#get_position_input refers to 'input' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
+ X [165, 166]:FeatureEnvy: Game#get_position_input refers to 'position' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
+  [40]:NestedIterators: Game#set_opponent contains iterators nested 2 deep [https://github.com/troessner/reek/blob/master/docs/Nested-Iterators.md]
+  [5]:TooManyInstanceVariables: Game has at least 5 instance variables [https://github.com/troessner/reek/blob/master/docs/Too-Many-Instance-Variables.md]
+  [5]:TooManyMethods: Game has at least 16 methods [https://github.com/troessner/reek/blob/master/docs/Too-Many-Methods.md]
+  [178]:TooManyStatements: Game#deploy_opp_ship has approx 10 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+  [113]:TooManyStatements: Game#deploy_ship has approx 9 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+  [130]:TooManyStatements: Game#get_orientation has approx 9 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+  [148]:TooManyStatements: Game#get_starting_position has approx 6 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+X  [101]:TooManyStatements: Game#opponent_round has approx 8 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+ X [18]:TooManyStatements: Game#play has approx 6 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+ X [70]:TooManyStatements: Game#play_rounds has approx 8 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+  [53]:TooManyStatements: Game#set_hit_rules has approx 8 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+  X[36]:TooManyStatements: Game#set_opponent has approx 6 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
 do def initialize nalezy dodac:
+```
 
 ```
 @length = length
 @fill_char = fill_char
 ```
 
-#Attribute
-grid_cell.rb -- 2 warnings:
-  X[3]:Attribute: GridCell#ship is a writable attribute [https://github.com/troessner/reek/blob/master/docs/Attribute.md]
-  X[3]:Attribute: GridCell#status is a writable attribute [https://github.com/troessner/reek/blob/master/docs/Attribute.md]
 
-Zamiast:
+grid.rb
+# Attribute
+Smell ten pojawia sie gdy użyjemy attr_accessor na początku klasy
+
+```
+ X[3]:Attribute: GridCell#ship is a writable attribute 
+  X[3]:Attribute: GridCell#status is a writable attribute
+  ```
+Początkowo
 
 ```
 
 attr_accessor :ship, :status
 
 ```
+
+Finalnie:
+
 ```
  def status
     @status
@@ -50,88 +121,89 @@ attr_accessor :ship, :status
 
 ```
 
-player.rb -- 5 warnings:
-  X [10]:Attribute: Player#name is a writable attribute [https://github.com/troessner/reek/blob/master/docs/Attribute.md]
-  X[10]:Attribute: Player#ships_left is a writable attribute [https://github.com/troessner/reek/blob/master/docs/Attribute.md]
-  [38, 41]:NestedIterators: Player#print_boards contains iterators nested 2 deep [https://github.com/troessner/reek/blob/master/docs/Nested-Iterators.md]
-  [8]:TooManyInstanceVariables: Player has at least 9 instance variables [https://github.com/troessner/reek/blob/master/docs/Too-Many-Instance-Variables.md]
-  [31]:TooManyStatements: Player#print_boards has approx 14 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
-
-
-Przed refaktoryzacja player.rb:
-
-
+ship.rb
+# InstanceVariableAssumption
 ```
-(46 linii kodu, flog score: 62.4, flay score: 0).
-
-
+ X [1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@fill_char' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
+  X[1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@length' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
 ```
 
+Początkowo
+
+```
+attr_reader :length, :hits, :fill_char
+
+	def initialize
+		@hits = 0
+	end
+```
 
 
- [10]:Attribute: Player#name 
- [10]:Attribute: Player#ships_left 
+	Finalnie
+	
+	
+```
+	attr_reader :length, :hits, :fill_char
+
+	def initialize
+		@hits = 0
+		@length = length
+		@fill_char = fill_char
+	end
+```
+
+player.rb
+# Attribute
+
+```
+[10]:Attribute: Player#name is a writable attribute
+ X[10]:Attribute: Player#ships_left is a writable attribute
  
+ ```
+
+
  Zamiast:
 
 ```
 
 attr_accessor :ship, :status
 
-```
 
-```
-	def name
-		@name
+
+
+	def ship
+		@ship
 	end
 
-	def name=(str)
-		@name = str
+	def ship=(str)
+		@ship = str
+	end
+```
+
+Finalnie:
+
+```
+
+def status
+		@status
 	end
 
-
-
-def ships_left
-		@ships_left
-	end
-
-	def ships_left=(str)
-		@ships_left = str
+	def status=(str)
+		@status = str
 	end
 
 ```
 
-Przed refaktoryzacja player.rb:
 
 
-```
-(46 linii kodu, flog score: 62.4, flay score: 0).
+board.rb
 
-
-```
-
-```
-board - 10 smells
-  X [10]:Attribute: Board#grid is a writable attribute [https://github.com/troessner/reek/blob/master/docs/Attribute.md]
-  [65]:ControlParameter: Board#check_clearance? is controlled by argument 'orientation' [https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md]
-  [37]:ControlParameter: Board#place_ship is controlled by argument 'orientation' [https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md]
-  [51]:ControlParameter: Board#valid_coordinates? is controlled by argument 'orientation' [https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md]
-  [33, 50, 59, 75]:DataClump: Board takes parameters ['orientation', 'ship', 'start_position'] to 4 methods [https://github.com/troessner/reek/blob/master/docs/Data-Clump.md]
-  [27]:NestedIterators: Board#to_s contains iterators nested 2 deep [https://github.com/troessner/reek/blob/master/docs/Nested-Iterators.md]
- X [37, 51, 65]:RepeatedConditional: Board tests 'orientation == :horizontal' at least 3 times [https://github.com/troessner/reek/blob/master/docs/Repeated-Conditional.md]
-  [59]:TooManyStatements: Board#check_clearance? has approx 7 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
- X [33]:TooManyStatements: Board#place_ship has approx 9 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
- X [21]:TooManyStatements: Board#to_s has approx 9 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
-
-```
-
-(84 linii kodu, flog score: 95.7, flay score: 42).
-
-
-#RepeatedConditional
+# RepeatedConditional
 Zbyt często w klasie użyty taki sam warunek (maksymalnie może byc on użyty dwa razy)
 
- [37, 51, 65]:RepeatedConditional  
+```
+ [37, 51, 65]:RepeatedConditional: Board tests 'orientation == :horizontal' at least 3 times 
+ ```
  
  Rozwiązanie: odwrócenie instrukcji warunkowej w jednym z przypadków
  
@@ -161,9 +233,12 @@ Finalnie:
  
  ```
  
- 
-[10]:Attribute: 
+ # Attribute
+ ```
+[10]:Attribute: Board#grid is a writable attribute
+```
 
+Początkowo
 
 ```
 
@@ -184,16 +259,50 @@ def grid
 	
 ```
 
-#TooManyStatements 
+# TooManyStatements 
 
 Zapach ten zazwyczaj powstaje gdy metoda jest za długa, gdyż pojawia sie gdy metoda ma więcej niż 5 linii
 Żeby wyeliminować ten zapach najczęściej rozbija sie metode na kilka poprzez grupowanie elementów wspólnych metody i wywoływanie ich z odpowiednimi argumentami
 
-
-[33]:TooManyStatements: Board#place_ship  
+```
+[33]:[33]:TooManyStatements: Board#place_ship has approx 9 statements
 utworzenie dwoch nowych metod, dodanie attr_reader row i column
+```
 
-def vertical_place_ship(row,column,ship)
+
+Przed:
+```
+def place_ship(ship, start_position, orientation)
+		row = start_position[:row]
+		column = start_position[:column]
+		ship.length.times do
+			if orientation == :horizontal
+				self.grid[row][column].ship = ship
+				self.grid[row][column].status = :occupied
+				column += 1
+			else
+				self.grid[row][column].ship = ship
+				self.grid[row][column].status = :occupied
+				row += 1
+			end
+		end
+	end
+```
+Po:
+```
+def place_ship(ship, start_position, orientation)
+		@row = start_position[:row]
+		@column = start_position[:column]
+		ship.length.times do
+			if orientation == :vertical
+				vertical_place_ship(row,column,ship)
+			else
+				horizontal_place_ship(row,column,ship)
+			end
+		end
+	end
+	
+	def vertical_place_ship(row,column,ship)
 		self.grid[row][column].ship = ship
 		self.grid[row][column].status = :occupied
 		@row += 1 
@@ -204,10 +313,32 @@ def vertical_place_ship(row,column,ship)
 		self.grid[row][column].status = :occupied
 		@column += 1
 	end
+```
 
+```
 [21]:TooManyStatements: Board#to_s has approx 9 statements
-utworzenie nowej metody, dodanie attr_reader do zmiennej i
+```
 
+utworzenie nowej metody, dodanie attr_reader do zmiennej 
+
+```
+def to_s
+		row_letter = ('A'..'Z').to_a
+		i = 0
+		puts "  1 2 3 4 5 6 7 8 9 10"
+		@grid.each do |row|
+			print row_letter[i] + ' '
+			row.each {|cell| print cell.to_s + ' '}
+			print "\n"
+			i += 1
+		end
+	end
+```
+
+Po:
+
+```
+	
 	def to_s
 		row_letter = ('A'..'Z').to_a
 		@i = 0
@@ -224,24 +355,125 @@ utworzenie nowej metody, dodanie attr_reader do zmiennej i
 			@i += 1
 	end
 
+```
+rules.rb
 
-rules.rb -- 13 warnings:
- X[80, 83, 86, 87, 89, 91, 93, 98]:FeatureEnvy: AdvancedRules#shoot refers to 'targetCell' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
- X [35, 36]:FeatureEnvy: BaseRules#get_position_input refers to 'input' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
- X [35, 36]:FeatureEnvy: BaseRules#get_position_input refers to 'position' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
- X [43, 49, 50, 52, 54, 56]:FeatureEnvy: ClassicRules#shoot refers to 'targetCell' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
-  [2]:LongParameterList: Rules#shoot has 4 parameters [https://github.com/troessner/reek/blob/master/docs/Long-Parameter-List.md]
-  [102]:TooManyStatements: AdvancedRules#choose_target has approx 8 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
- X [79]:TooManyStatements: AdvancedRules#shoot has approx 12 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
-  [61]:TooManyStatements: ClassicRules#choose_target has approx 7 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
- X [42]:TooManyStatements: ClassicRules#shoot has approx 9 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
-X  [28]:UnusedParameters: BaseRules#choose_target has unused parameter 'player' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md]
-X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'shooterCell' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md]
-X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'target' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md]
-X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'targetCell' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md] // usuniêcie parametru
+# FeatureEnvy
+Wystêpuje, gdy fragment kodu odwoluje sie do innego obiektu czesciej, niz sam do siebie.Takze gdy kilku klientów wykonuje te sama serie manipulacji na okreslonym typie obiektu. Wyelimonowanie tego smella najczęściej również następuje po przegrupowaniu kodu i podzieleniu nba kilka metod
 
-[35,36] FeatureEnvy
+```
+[80, 83, 86, 87, 89, 91, 93, 98]:FeatureEnvy: AdvancedRules#shoot refers to 'targetCell' more than self (maybe move it to another class?)
+```
 
+
+
+
+Przed:
+```
+	def shoot(targetCell, shooterCell, target)
+		if targetCell.status == :open
+			puts "\n\"MISS!\""
+			shooterCell.miss
+		elsif targetCell.status == :damaged
+			puts "\n\"HIT!\""
+			shooterCell.hit
+			targetCell.ship.hit
+			targetCell.hit
+
+			if targetCell.ship.sunk?
+				target.ships_left -= 1
+				puts "#{target}'s #{targetCell.ship.class.to_s.downcase} sunk! #{target.ships_left} more ships to go."
+			else
+				puts "\n#{target}'s #{targetCell.ship.class.to_s.downcase} has been hit!"
+			end
+		else
+			puts "\n\"DAMAGED!\""
+			shooterCell.damaged
+			targetCell.damaged
+		end
+	end
+
+
+```
+
+Po:
+
+
+```
+def shoot(targetCell, shooterCell, target)
+		if targetCell.status == :open
+			ship_miss(shooterCell)
+		elsif targetCell.status == :damaged
+			hit_targetCell_ship(shooterCell,targetCell)
+			if targetCell.ship.sunk?
+				print_ship_sunk(target,targetCell)
+			else
+				puts "\n#{target}'s #{targetCell.ship.class.to_s.downcase} has been hit!"
+			end
+		else
+			ship_damage(shooterCell,targetCell)
+		end
+	end
+	
+	def hit_targetCell_ship(shooterCell,targetCell)
+		puts "\n\"HIT!\""
+		shooterCell.hit
+		targetCell.ship.hit
+		hit_targetCell(targetCell)
+	end
+		
+	def hit_targetCell(targetCell)
+		targetCell.hit
+	end
+	
+	def print_ship_sunk(target,targetCell)
+			number_of_ships(target)
+			puts "#{target}'s #{targetCell.ship.class.to_s.downcase} sunk! #{target.ships_left} more ships to go."
+	end
+	
+	def number_of_ships(target)
+	target.ships_left -= 1
+	end
+	
+		
+	def print_ship_hit(target,targetCell)
+		puts "\n#{target}'s #{targetCell.ship.class.to_s.downcase} has been hit!"
+	end
+	def ship_miss(shooterCell)
+		puts "\n\"MISS!\""
+		shooterCell.miss
+	end
+		
+	def ship_damage(shooterCell,targetCell)
+			puts "\n\"DAMAGED!\""
+			shooterCell.damaged
+			targetCell.damaged
+	end
+	
+	
+```
+
+
+```
+[35, 36]:FeatureEnvy: BaseRules#get_position_input refers to 'input' more than self (maybe move it to another class?) 
+[35, 36]:FeatureEnvy: BaseRules#get_position_input refers to 'position' more than self (maybe move it to another class?)
+```
+
+
+Przed:
+```
+def get_position_input
+		position = {}
+		input = gets.chomp.rstrip.upcase
+		position[:row] = Board::ROW.rindex(input.split(//, 2)[0])
+		position[:column] = Board::COLUMN.rindex(input.split(//, 2)[1])
+		return position
+	end
+```	
+	
+	Po:
+	
+```	
 	def get_position_input
 		position = {}
 		input = gets.chomp.rstrip.upcase
@@ -249,7 +481,6 @@ X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'targetCell' [htt
 		get_position_input_column(position,input)
 		return position
 	end
-	
 	def	get_position_input_row(position,input)
 		position[:row] = Board::ROW.rindex(input.split(//, 2)[0])
 	end
@@ -257,13 +488,42 @@ X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'targetCell' [htt
 	def	get_position_input_column(position,input)
 		position[:column] = Board::COLUMN.rindex(input.split(//, 2)[1])
 	end
+```
+```
+[43, 49, 50, 52, 54, 56]:FeatureEnvy: ClassicRules#shoot refers to 'targetCell' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
+[42]:TooManyStatements: ClassicRules#shoot has approx 9 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+```
 
 
-[43, 49, 50, 52, 54, 56]:FeatureEnvy: 
+Przed:
+```
 def shoot(targetCell, shooterCell, target)
 		if targetCell.status == :open
 			puts "\n\"MISS!\""
 			shooterCell.miss
+		else
+			puts "\n\"HIT!\""
+			shooterCell.hit
+			targetCell.ship.hit
+			targetCell.hit
+
+			if targetCell.ship.sunk?
+				target.ships_left -= 1
+				puts "#{target}'s #{targetCell.ship.class.to_s.downcase} sunk! #{target.ships_left} more ships to go."
+			else
+				puts "\n#{target}'s #{targetCell.ship.class.to_s.downcase} has been hit!"
+			end
+		end
+	end
+```
+
+Po:
+
+```
+
+def shoot(targetCell, shooterCell, target)
+		if targetCell.status == :open
+			ship_miss(shooterCell)
 		else
 			hit_targetCell_ship(shooterCell,targetCell)
 			if targetCell.ship.sunk?
@@ -275,40 +535,56 @@ def shoot(targetCell, shooterCell, target)
 		end
 	end
 	
-		def hit_targetCell_ship(shooterCell,targetCell)
-			puts "\n\"HIT!\""
-			shooterCell.hit
-			targetCell.ship.hit
-			hit_targetCell(targetCell)
-		end
+	def hit_targetCell_ship(shooterCell,targetCell)
+		puts "\n\"HIT!\""
+		shooterCell.hit
+		targetCell.ship.hit
+		hit_targetCell(targetCell)
+	end
 		
-		def hit_targetCell(targetCell)
-			targetCell.hit
-		end
+	def hit_targetCell(targetCell)
+		targetCell.hit
+	end
 		
-		def print_ship_sunk(target,targetCell)
-				puts "#{target}'s #{targetCell.ship.class.to_s.downcase} sunk! #{target.ships_left} more ships to go."
-		end
+	def print_ship_sunk(target,targetCell)
+			puts "#{target}'s #{targetCell.ship.class.to_s.downcase} sunk! #{target.ships_left} more ships to go."
+	end
 		
-		def print_ship_hit(target,targetCell)
-			puts "\n#{target}'s #{targetCell.ship.class.to_s.downcase} has been hit!"
-		end
+	def print_ship_hit(target,targetCell)
+		puts "\n#{target}'s #{targetCell.ship.class.to_s.downcase} has been hit!"
+	end
+	def ship_miss(shooterCell)
+		puts "\n\"MISS!\""
+		shooterCell.miss
+	end
+
+
+```
 
 
 
-[80, 83, 86, 87, 89, 91, 93, 98]:FeatureEnvy
+```
+[79]:TooManyStatements: AdvancedRules#shoot has approx 12 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
 
-	def shoot(targetCell, shooterCell, target)
+```
+
+Przed:
+```
+def shoot(targetCell, shooterCell, target)
 		if targetCell.status == :open
 			puts "\n\"MISS!\""
 			shooterCell.miss
 		elsif targetCell.status == :damaged
-			hit_ship
+			puts "\n\"HIT!\""
+			shooterCell.hit
+			targetCell.ship.hit
+			targetCell.hit
+
 			if targetCell.ship.sunk?
 				target.ships_left -= 1
-				print_ship_sunk
+				puts "#{target}'s #{targetCell.ship.class.to_s.downcase} sunk! #{target.ships_left} more ships to go."
 			else
-				print_ship_hit
+				puts "\n#{target}'s #{targetCell.ship.class.to_s.downcase} has been hit!"
 			end
 		else
 			puts "\n\"DAMAGED!\""
@@ -316,23 +592,112 @@ def shoot(targetCell, shooterCell, target)
 			targetCell.damaged
 		end
 	end
+```	
+
+Po:
+```
+def shoot(targetCell, shooterCell, target)
+		if targetCell.status == :open
+			ship_miss(shooterCell)
+		elsif targetCell.status == :damaged
+			hit_targetCell_ship(shooterCell,targetCell)
+			if targetCell.ship.sunk?
+				print_ship_sunk(target,targetCell)
+			else
+				puts "\n#{target}'s #{targetCell.ship.class.to_s.downcase} has been hit!"
+			end
+		else
+			ship_damage(shooterCell,targetCell)
+		end
+	end
 	
-		def hit_ship
-			puts "\n\"HIT!\""
-			shooterCell.hit
-			targetCell.ship.hit
-			targetCell.hit
-		end
+	def hit_targetCell_ship(shooterCell,targetCell)
+		puts "\n\"HIT!\""
+		shooterCell.hit
+		targetCell.ship.hit
+		hit_targetCell(targetCell)
+	end
 		
-		def print_ship_sunk
-				puts "#{target}'s #{targetCell.ship.class.to_s.downcase} sunk! #{target.ships_left} more ships to go."
-		end
+	def hit_targetCell(targetCell)
+		targetCell.hit
+	end
+	
+	def print_ship_sunk(target,targetCell)
+			number_of_ships(target)
+			puts "#{target}'s #{targetCell.ship.class.to_s.downcase} sunk! #{target.ships_left} more ships to go."
+	end
+	
+	def number_of_ships(target)
+	target.ships_left -= 1
+	end
+	
 		
-		def print_ship_hit
-			puts "\n#{target}'s #{targetCell.ship.class.to_s.downcase} has been hit!"
-		end
+	def print_ship_hit(target,targetCell)
+		puts "\n#{target}'s #{targetCell.ship.class.to_s.downcase} has been hit!"
+	end
+	def ship_miss(shooterCell)
+		puts "\n\"MISS!\""
+		shooterCell.miss
+	end
+		
+	def ship_damage(shooterCell,targetCell)
+			puts "\n\"DAMAGED!\""
+			shooterCell.damaged
+			targetCell.damaged
+	end
+```
 
 
+
+```
+def choose_target(player)
+		valid = false
+		while valid == false
+			print "\nYour turn. Target coordinates: "
+			target = get_position_input
+			if target[:row].nil? || target[:column].nil?
+				puts "Invalid coordinates."
+			elsif player.target_board.grid[target[:row]][target[:column]].status != :open
+				puts "Coordinates already called. Try again."
+			else
+				valid = true
+			end
+		end
+		return target
+	end
+```
+	
+```	
+# UnusedParameters wystepuje gdy nie używamy parametru podanego w argumencie metody
+
+X  [28]:UnusedParameters: BaseRules#choose_target has unused parameter 'player'
+X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'shooterCell' 
+X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'target' 
+X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'targetCell' 
+```
+
+Przed:
+```
+def shoot(targetCell, shooterCell, target)
+		raise NotImplementedError
+	end
+
+	def choose_target(player)
+		raise NotImplementedError
+	end
+```
+	
+Po:
+```
+def shoot()
+		raise NotImplementedError
+	end
+
+	def choose_target()
+		raise NotImplementedError
+	end
+```
+	
 game.rb -- 15 warnings:
   [179, 185, 187, 192, 194]:FeatureEnvy: Game#deploy_opp_ship refers to 'opponent' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
  X [165, 166]:FeatureEnvy: Game#get_position_input refers to 'input' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
