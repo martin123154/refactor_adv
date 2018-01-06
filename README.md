@@ -271,6 +271,9 @@ utworzenie dwoch nowych metod, dodanie attr_reader row i column
 
 Przed:
 ```
+
+
+
 def place_ship(ship, start_position, orientation)
 		row = start_position[:row]
 		column = start_position[:column]
@@ -289,6 +292,10 @@ def place_ship(ship, start_position, orientation)
 ```
 Po:
 ```
+
+attr_reader :column, :row
+
+
 def place_ship(ship, start_position, orientation)
 		@row = start_position[:row]
 		@column = start_position[:column]
@@ -337,7 +344,7 @@ def to_s
 Po:
 
 ```
-	
+	attr_reader :i
 	def to_s
 		row_letter = ('A'..'Z').to_a
 		@i = 0
