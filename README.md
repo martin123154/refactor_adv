@@ -2,7 +2,6 @@
 # REFACTORING
 47 warnings
 
-# InstanceVariableAssumption
 
 ```
 grid_cell.rb -- 2 warnings:
