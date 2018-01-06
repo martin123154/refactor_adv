@@ -122,6 +122,7 @@ Finalnie:
 
 ship.rb
 # InstanceVariableAssumption
+Zmienne instancyjne nie powinny być ustawione lub obecne poza definicją klase, dlatego trzeba je zdefiniować w klasie
 ```
  X [1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@fill_char' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
   X[1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@length' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
