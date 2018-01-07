@@ -47,7 +47,7 @@ rules.rb -- 13 warnings:
  X [35, 36]:FeatureEnvy: BaseRules#get_position_input refers to 'input' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
  X [35, 36]:FeatureEnvy: BaseRules#get_position_input refers to 'position' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
  X [43, 49, 50, 52, 54, 56]:FeatureEnvy: ClassicRules#shoot refers to 'targetCell' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
-  [2]:LongParameterList: Rules#shoot has 4 parameters [https://github.com/troessner/reek/blob/master/docs/Long-Parameter-List.md]
+ X [2]:LongParameterList: Rules#shoot has 4 parameters [https://github.com/troessner/reek/blob/master/docs/Long-Parameter-List.md]
   [102]:TooManyStatements: AdvancedRules#choose_target has approx 8 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
  X [79]:TooManyStatements: AdvancedRules#shoot has approx 12 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
   [61]:TooManyStatements: ClassicRules#choose_target has approx 7 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
