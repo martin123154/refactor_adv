@@ -81,7 +81,7 @@ do def initialize nalezy dodac:
 @length = length
 @fill_char = fill_char
 ```
-
+# ----------------------------------------------------------------------------------------------------------------------------------
 
 grid.rb
 # Attribute
@@ -119,11 +119,12 @@ Finalnie:
   end
 
 ```
-
+# ----------------------------------------------------------------------------------------------------------------------------------
 ship.rb
 # InstanceVariableAssumption
 Zmienne instancyjne nie powinny być ustawione lub obecne poza definicją klase, dlatego trzeba je zdefiniować w klasie
-```
+
+
  X [1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@fill_char' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
   X[1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@length' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
 ```
@@ -157,6 +158,7 @@ player.rb
  Smell ten pojawia sie gdy użyjemy attr_accessor na początku klasy, który służy jako getter i setter. Rozwiązanaiem problemu jest napisanie getterów i setterów metodami.
 
 ```
+# ----------------------------------------------------------------------------------------------------------------------------------
 [10]:Attribute: Player#name is a writable attribute
  X[10]:Attribute: Player#ships_left is a writable attribute
  
@@ -196,7 +198,7 @@ def status
 ```
 
 
-
+# ----------------------------------------------------------------------------------------------------------------------------------
 board.rb
 
 # RepeatedConditional
@@ -233,7 +235,7 @@ Finalnie:
 		end
  
  ```
- 
+ # ----------------------------------------------------------------------------------------------------------------------------------
  # Attribute
  Smell ten pojawia sie gdy użyjemy attr_accessor na początku klasy, który służy jako getter i setter. Rozwiązanaiem problemu jest napisanie getterów i setterów metodami.
  ```
@@ -260,7 +262,7 @@ def grid
 	end
 	
 ```
-
+# ----------------------------------------------------------------------------------------------------------------------------------
 # TooManyStatements 
 
 Zapach ten zazwyczaj powstaje gdy metoda jest za długa, gdyż pojawia sie gdy metoda ma więcej niż 5 linii
@@ -325,6 +327,7 @@ def place_ship(ship, start_position, orientation)
 ```
 
 ```
+# ----------------------------------------------------------------------------------------------------------------------------------
 [21]:TooManyStatements: Board#to_s has approx 9 statements
 ```
 
@@ -364,6 +367,7 @@ Po:
 			@i += 1
 	end
 
+# ----------------------------------------------------------------------------------------------------------------------------------
 ```
 rules.rb
 
@@ -464,6 +468,7 @@ def shoot(targetCell, shooterCell, target)
 
 
 ```
+# ----------------------------------------------------------------------------------------------------------------------------------
 [35, 36]:FeatureEnvy: BaseRules#get_position_input refers to 'input' more than self (maybe move it to another class?) 
 [35, 36]:FeatureEnvy: BaseRules#get_position_input refers to 'position' more than self (maybe move it to another class?)
 ```
@@ -498,7 +503,10 @@ def get_position_input
 		position[:column] = Board::COLUMN.rindex(input.split(//, 2)[1])
 	end
 ```
+# ----------------------------------------------------------------------------------------------------------------------------------
 ```
+
+
 [43, 49, 50, 52, 54, 56]:FeatureEnvy: ClassicRules#shoot refers to 'targetCell' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
 [42]:TooManyStatements: ClassicRules#shoot has approx 9 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
 ```
@@ -571,7 +579,7 @@ def shoot(targetCell, shooterCell, target)
 ```
 
 
-
+# ----------------------------------------------------------------------------------------------------------------------------------
 ```
 [79]:TooManyStatements: AdvancedRules#shoot has approx 12 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
 
@@ -675,7 +683,9 @@ def choose_target(player)
 		return target
 	end
 ```
-	
+
+# ----------------------------------------------------------------------------------------------------------------------------------
+
 ```	
 # UnusedParameters wystepuje gdy nie używamy parametru podanego w argumencie metody
 
@@ -706,7 +716,7 @@ def shoot()
 		raise NotImplementedError
 	end
 ```
-	
+# ----------------------------------------------------------------------------------------------------------------------------------	
 game.rb 
 
 # FeatureEnvy
@@ -753,7 +763,7 @@ def get_position_input
  
 
 	
-
+# ----------------------------------------------------------------------------------------------------------------------------------
  ```
  [101]:TooManyStatements: Game#opponent_round has approx 8 statements 
   ```
@@ -801,7 +811,7 @@ def get_position_input
 	
 	 ```
 
-
+# ----------------------------------------------------------------------------------------------------------------------------------
  ```
  
 [18]:TooManyStatements: Game#play has approx 6 statements 
@@ -834,7 +844,7 @@ def play
 	end
 	
  ```
-
+# ----------------------------------------------------------------------------------------------------------------------------------
  ```
 [70]:TooManyStatements: Game#play_rounds has approx 8 statements
 Zapach ten zazwyczaj powstaje gdy metoda jest za długa, gdyż pojawia sie gdy metoda ma więcej niż 5 linii
@@ -883,7 +893,7 @@ def play_rounds
 	end
 	
 ```
-
+# ----------------------------------------------------------------------------------------------------------------------------------
 ```
 [53]:TooManyStatements: Game#set_hit_rules has approx 8 statements
 ```
@@ -941,7 +951,7 @@ def set_hit_rules
 ```
 
 
-
+# ----------------------------------------------------------------------------------------------------------------------------------
 
 ```
   [36]:TooManyStatements: Game#set_opponent has approx 6 statements 
