@@ -59,13 +59,13 @@ X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'targetCell' [htt
 ```
 ```
 game.rb -- 15 warnings:
-  [179, 185, 187, 192, 194]:FeatureEnvy: Game#deploy_opp_ship refers to 'opponent' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
+ X [179, 185, 187, 192, 194]:FeatureEnvy: Game#deploy_opp_ship refers to 'opponent' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
  X [165, 166]:FeatureEnvy: Game#get_position_input refers to 'input' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
  X [165, 166]:FeatureEnvy: Game#get_position_input refers to 'position' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
   [40]:NestedIterators: Game#set_opponent contains iterators nested 2 deep [https://github.com/troessner/reek/blob/master/docs/Nested-Iterators.md]
   [5]:TooManyInstanceVariables: Game has at least 5 instance variables [https://github.com/troessner/reek/blob/master/docs/Too-Many-Instance-Variables.md]
   [5]:TooManyMethods: Game has at least 16 methods [https://github.com/troessner/reek/blob/master/docs/Too-Many-Methods.md]
-  [178]:TooManyStatements: Game#deploy_opp_ship has approx 10 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
+ X [178]:TooManyStatements: Game#deploy_opp_ship has approx 10 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
   [113]:TooManyStatements: Game#deploy_ship has approx 9 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
   [130]:TooManyStatements: Game#get_orientation has approx 9 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
   [148]:TooManyStatements: Game#get_starting_position has approx 6 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
