@@ -74,13 +74,10 @@ X  [101]:TooManyStatements: Game#opponent_round has approx 8 statements [https:/
  X [70]:TooManyStatements: Game#play_rounds has approx 8 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
   [53]:TooManyStatements: Game#set_hit_rules has approx 8 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
   X[36]:TooManyStatements: Game#set_opponent has approx 6 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
-do def initialize nalezy dodac:
-```
 
 ```
-@length = length
-@fill_char = fill_char
-```
+
+
 # ----------------------------------------------------------------------------------------------------------------------------------
 
 grid.rb
@@ -124,7 +121,7 @@ ship.rb
 # InstanceVariableAssumption
 Zmienne instancyjne nie powinny być ustawione lub obecne poza definicją klase, dlatego trzeba je zdefiniować w klasie
 
-
+```
  X [1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@fill_char' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
   X[1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@length' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
 ```
