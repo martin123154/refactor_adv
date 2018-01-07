@@ -81,7 +81,7 @@ X  [101]:TooManyStatements: Game#opponent_round has approx 8 statements [https:/
 # ----------------------------------------------------------------------------------------------------------------------------------
 
 grid.rb
-# Attribute
+## Attribute
 Smell ten pojawia sie gdy u¿yjemy attr_accessor na pocz¹tku klasy, który s³u¿y jako getter i setter. Rozwi¹zanaiem problemu jest napisanie getterów i setterów metodami. 
 
 ```
@@ -118,7 +118,7 @@ Finalnie:
 ```
 # ----------------------------------------------------------------------------------------------------------------------------------
 ship.rb
-# InstanceVariableAssumption
+## InstanceVariableAssumption
 Zmienne instancyjne nie powinny byæ ustawione lub obecne poza definicj¹ klase, dlatego trzeba je zdefiniowaæ w klasie
 
 ```
@@ -152,7 +152,7 @@ Finalnie nale¿y dodac @length = length, @fill_char = fill_char by problem znikn
 
 # ----------------------------------------------------------------------------------------------------------------------------------
 player.rb
-# Attribute
+## Attribute
  Smell ten pojawia sie gdy u¿yjemy attr_accessor na pocz¹tku klasy, który s³u¿y jako getter i setter. Rozwi¹zanaiem problemu jest napisanie getterów i setterów metodami.
 
 ```
@@ -194,7 +194,7 @@ def status
 
 ```
 
-# Nested Iterators
+## Nested Iterators
 Smell wystepuje gdy nastêpuj¹ po sobie dwie iteracje. Najczêstszym sposobem eliminacji zapachu jest pogrupowanie metody. 
 
  ```
@@ -255,7 +255,7 @@ end
 # ----------------------------------------------------------------------------------------------------------------------------------
 board.rb
 
-# RepeatedConditional
+## RepeatedConditional
 Zbyt czêsto w klasie u¿yty taki sam warunek (maksymalnie mo¿e byc on u¿yty dwa razy)
 
 ```
@@ -317,7 +317,7 @@ def grid
 	
 ```
 # ----------------------------------------------------------------------------------------------------------------------------------
-# Nested Iterators
+## Nested Iterators
 Smell wystepuje gdy nastêpuj¹ po sobie dwie iteracje. Najczêstszym sposobem eliminacji zapachu jest pogrupowanie metody.
 ```
 [27]:NestedIterators: Board#to_s contains iterators nested 2 deep
@@ -363,7 +363,7 @@ def to_s
 ```
 	
 # ----------------------------------------------------------------------------------------------------------------------------------
-# TooManyStatements 
+## TooManyStatements 
 
 Zapach ten zazwyczaj powstaje gdy metoda jest za d³uga, gdy¿ pojawia sie gdy metoda ma wiêcej ni¿ 5 linii
 ¯eby wyeliminowaæ ten zapach najczêciej rozbija sie metode na kilka poprzez grupowanie elementów wspólnych metody i wywo³ywanie ich z odpowiednimi argumentami
@@ -472,7 +472,7 @@ Po:
 ```
 rules.rb
 
-# FeatureEnvy
+## FeatureEnvy
 Wystepuje, gdy fragment kodu odwoluje sie do innego obiektu czesciej, niz sam do siebie.Takze gdy kilku klientów wykonuje te sama serie manipulacji na okreslonym typie obiektu. Wyelimonowanie tego smella najczêciej równie¿ nastêpuje po przegrupowaniu kodu i podzieleniu nba kilka metod
 
 ```
@@ -820,7 +820,7 @@ def shoot()
 # ----------------------------------------------------------------------------------------------------------------------------------	
 game.rb 
 
-# FeatureEnvy
+## FeatureEnvy
 Wystepuje, gdy fragment kodu odwoluje sie do innego obiektu czesciej, niz sam do siebie.Takze gdy kilku klientów wykonuje te sama serie manipulacji na okreslonym typie obiektu. Wyelimonowanie tego smella najczêciej równie¿ nastêpuje po przegrupowaniu kodu i podzieleniu nba kilka metod
 
 ```
