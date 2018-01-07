@@ -21,7 +21,7 @@ ship.rb -- 2 warnings:
 player.rb -- 5 warnings:
   X [10]:Attribute: Player#name is a writable attribute [https://github.com/troessner/reek/blob/master/docs/Attribute.md]
   X[10]:Attribute: Player#ships_left is a writable attribute [https://github.com/troessner/reek/blob/master/docs/Attribute.md]
-  [38, 41]:NestedIterators: Player#print_boards contains iterators nested 2 deep [https://github.com/troessner/reek/blob/master/docs/Nested-Iterators.md]
+  X[38, 41]:Iterators: Player#print_boards contains iterators nested 2 deep [https://github.com/troessner/reek/blob/master/docs/Nested-Iterators.md]
   [8]:TooManyInstanceVariables: Player has at least 9 instance variables [https://github.com/troessner/reek/blob/master/docs/Too-Many-Instance-Variables.md]
   [31]:TooManyStatements: Player#print_boards has approx 14 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
 
@@ -194,6 +194,63 @@ def status
 
 ```
 
+# Nested Iterators
+Smell wystepuje gdy następują po sobie dwie iteracje. Najczęstszym sposobem eliminacji zapachu jest pogrupowanie metody. 
+
+ ```
+[38, 41]:NestedIterators: Player#print_boards contains iterators nested 2 deep 
+ ```
+ 
+ Przed:
+ 
+  ```
+ #print side-by-side ship status and shpts taken boards
+	def print_boards
+		puts "      SHIP STATUS                   SHOTS TAKEN".colorize(:light_red)
+		puts "  1 2 3 4 5 6 7 8 9 10          1 2 3 4 5 6 7 8 9 10".colorize(:green)
+		row_letter = ('A'..'Z').to_a
+		row_number = 0
+		@board.grid.each do |row1|
+			print row_letter[row_number].colorize(:green) + ' '
+			row1.each {|cell| print cell.to_s + ' '}
+			print "        "
+			print row_letter[row_number].colorize(:green) + ' '
+			@target_board.grid[row_number].each {|cell| print cell.to_s + ' '}
+			print "\n"
+			row_number += 1
+		end
+	end
+  ```
+  
+  Po:
+  
+   ```
+ #print side-by-side ship status and shpts taken boards
+	def print_boards
+		puts "      SHIP STATUS                   SHOTS TAKEN".colorize(:light_red)
+		puts "  1 2 3 4 5 6 7 8 9 10          1 2 3 4 5 6 7 8 9 10".colorize(:green)
+		row_letter = ('A'..'Z').to_a
+		row_number = 0
+		@board.grid.each do |row1|
+			print row_letter[row_number].colorize(:green) + ' '
+			print_cell(row1)
+			print "        "
+			print row_letter[row_number].colorize(:green) + ' '
+			print_row_number(row_number)
+			print "\n"
+			row_number += 1
+		end
+	end
+	
+	def print_cell(row1)
+		row1.each {|cell| print cell.to_s + ' '}
+	end
+	
+	def print_row_number(row_number)
+		@target_board.grid[row_number].each {|cell| print cell.to_s + ' '}
+		end
+end
+ ```
 
 # ----------------------------------------------------------------------------------------------------------------------------------
 board.rb
