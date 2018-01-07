@@ -6,6 +6,7 @@ require_relative 'submarine'
 require_relative 'patrol_boat'
 
 class Board
+
 attr_reader :column, :row, :i
 
 	NUM_SHIPS = 5
@@ -13,19 +14,22 @@ attr_reader :column, :row, :i
 	ROW = ['A','B','C','D','E','F','G','H','I','J']
 	COLUMN = ['1','2','3','4','5','6','7','8','9','10']
 	
-	Post = Struct.new(:orientation, :ship, :start_position)			
 	
 	def grid
 		@grid
 	end
 	
+	
 	def grid=(str)
 		@grid = str
 	end
 	
+
+	
 	
 	def initialize()
 		@grid = Array.new(BOARD_DIM).map! {Array.new(BOARD_DIM).map! {GridCell.new}}
+		
 	end
 
 	def to_s

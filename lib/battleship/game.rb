@@ -224,9 +224,15 @@ class Game
 	#randomly place opponent's ships
 	def deploy_opp_ship(opponent, ship)
 		board = opponent.board
-		valid = false
+		@valid = false
 		while valid == false
 			orientation = [:horizontal, :vertical].sample
+			position = deploy_opp_ship_orientation(ship,orientation,board)
+			
+		end
+	end
+	
+	def deploy_opp_ship_orientation(ship,orientation,board)
 			if orientation == :horizontal
 				rows = Board::ROW
 				columns = Board::COLUMN[0..9 - opponent.send(ship).length]
@@ -234,16 +240,15 @@ class Game
 				rows = Board::ROW[0..9 - opponent.send(ship).length]
 				columns = Board::COLUMN
 			end
-			position = get_opp_position(rows.sample, columns.sample)
-
-			if(board.check_ship_placement?(opponent.send(ship), position, orientation))
-				valid = true
-				board.place_ship(opponent.send(ship), position, orientation)
-			end
-		end
+		position = get_opp_position(rows.sample, columns.sample)
+		place_opponent_ship(ship,board,position,orientation)
 	end
 	
-	
-	
+	def place_opponent_ship(ship,board,position,orientation)
+		if(board.check_ship_placement?(opponent.send(ship), position, orientation))
+		@valid = true
+		board.place_ship(opponent.send(ship), position, orientation)
+		end
+	end
 	
 end

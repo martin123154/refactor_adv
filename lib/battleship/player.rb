@@ -52,15 +52,20 @@ class Player
 		row_number = 0
 		@board.grid.each do |row1|
 			print row_letter[row_number].colorize(:green) + ' '
-			row1.each {|cell| print cell.to_s + ' '}
+			print_cell(row1)
 			print "        "
 			print row_letter[row_number].colorize(:green) + ' '
-			@target_board.grid[row_number].each {|cell| print cell.to_s + ' '}
+			print_row_number(row_number)
 			print "\n"
 			row_number += 1
 		end
 	end
 	
+	def print_cell(row1)
+		row1.each {|cell| print cell.to_s + ' '}
+	end
 	
-	
+	def print_row_number(row_number)
+		@target_board.grid[row_number].each {|cell| print cell.to_s + ' '}
+		end
 end

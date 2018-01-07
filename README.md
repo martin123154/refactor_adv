@@ -55,7 +55,7 @@ rules.rb -- 13 warnings:
 X  [28]:UnusedParameters: BaseRules#choose_target has unused parameter 'player' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md]
 X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'shooterCell' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md]
 X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'target' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md]
-X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'targetCell' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md] // usuniÃªcie parametru
+X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'targetCell' [https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md] // usuniecie parametru
 ```
 ```
 game.rb -- 15 warnings:
@@ -82,13 +82,13 @@ X  [101]:TooManyStatements: Game#opponent_round has approx 8 statements [https:/
 
 grid.rb
 # Attribute
-Smell ten pojawia sie gdy uÅ¼yjemy attr_accessor na poczÄ…tku klasy, ktÃ³ry sÅ‚uÅ¼y jako getter i setter. RozwiÄ…zanaiem problemu jest napisanie getterÃ³w i setterÃ³w metodami. 
+Smell ten pojawia sie gdy u¿yjemy attr_accessor na pocz¹tku klasy, który s³u¿y jako getter i setter. Rozwi¹zanaiem problemu jest napisanie getterów i setterów metodami. 
 
 ```
  X[3]:Attribute: GridCell#ship is a writable attribute 
   X[3]:Attribute: GridCell#status is a writable attribute
   ```
-PoczÄ…tkowo
+Pocz¹tkowo
 
 ```
 
@@ -119,14 +119,14 @@ Finalnie:
 # ----------------------------------------------------------------------------------------------------------------------------------
 ship.rb
 # InstanceVariableAssumption
-Zmienne instancyjne nie powinny byÄ‡ ustawione lub obecne poza definicjÄ… klase, dlatego trzeba je zdefiniowaÄ‡ w klasie
+Zmienne instancyjne nie powinny byæ ustawione lub obecne poza definicj¹ klase, dlatego trzeba je zdefiniowaæ w klasie
 
 ```
  X [1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@fill_char' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
   X[1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@length' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
 ```
 
-PoczÄ…tkowo
+Pocz¹tkowo
 
 ```
 attr_reader :length, :hits, :fill_char
@@ -137,7 +137,7 @@ attr_reader :length, :hits, :fill_char
 ```
 
 
-Finalnie naleÅ¼y dodac @length = length, @fill_char = fill_char by problem zniknÄ…Å‚
+Finalnie nale¿y dodac @length = length, @fill_char = fill_char by problem znikn¹³
 	
 	
 ```
@@ -153,7 +153,7 @@ Finalnie naleÅ¼y dodac @length = length, @fill_char = fill_char by problem znikn
 # ----------------------------------------------------------------------------------------------------------------------------------
 player.rb
 # Attribute
- Smell ten pojawia sie gdy uÅ¼yjemy attr_accessor na poczÄ…tku klasy, ktÃ³ry sÅ‚uÅ¼y jako getter i setter. RozwiÄ…zanaiem problemu jest napisanie getterÃ³w i setterÃ³w metodami.
+ Smell ten pojawia sie gdy u¿yjemy attr_accessor na pocz¹tku klasy, który s³u¿y jako getter i setter. Rozwi¹zanaiem problemu jest napisanie getterów i setterów metodami.
 
 ```
 [10]:Attribute: Player#name is a writable attribute
@@ -195,7 +195,7 @@ def status
 ```
 
 # Nested Iterators
-Smell wystepuje gdy nastÄ™pujÄ… po sobie dwie iteracje. NajczÄ™stszym sposobem eliminacji zapachu jest pogrupowanie metody. 
+Smell wystepuje gdy nastêpuj¹ po sobie dwie iteracje. Najczêstszym sposobem eliminacji zapachu jest pogrupowanie metody. 
 
  ```
 [38, 41]:NestedIterators: Player#print_boards contains iterators nested 2 deep 
@@ -256,15 +256,15 @@ end
 board.rb
 
 # RepeatedConditional
-Zbyt czÄ™sto w klasie uÅ¼yty taki sam warunek (maksymalnie moÅ¼e byc on uÅ¼yty dwa razy)
+Zbyt czêsto w klasie u¿yty taki sam warunek (maksymalnie mo¿e byc on u¿yty dwa razy)
 
 ```
  [37, 51, 65]:RepeatedConditional: Board tests 'orientation == :horizontal' at least 3 times 
  ```
  
- RozwiÄ…zanie: odwrÃ³cenie instrukcji warunkowej w jednym z przypadkÃ³w
+ Rozwi¹zanie: odwrócenie instrukcji warunkowej w jednym z przypadków
  
- PoczÄ…tkowo:
+ Pocz¹tkowo:
  ```
  if orientation == :horizontal
 				self.grid[row][column].ship = ship
@@ -291,12 +291,12 @@ Finalnie:
  ```
  # ----------------------------------------------------------------------------------------------------------------------------------
  # Attribute
- Smell ten pojawia sie gdy uÅ¼yjemy attr_accessor na poczÄ…tku klasy, ktÃ³ry sÅ‚uÅ¼y jako getter i setter. RozwiÄ…zanaiem problemu jest napisanie getterÃ³w i setterÃ³w metodami.
+ Smell ten pojawia sie gdy u¿yjemy attr_accessor na pocz¹tku klasy, który s³u¿y jako getter i setter. Rozwi¹zanaiem problemu jest napisanie getterów i setterów metodami.
  ```
 [10]:Attribute: Board#grid is a writable attribute
 ```
 
-PoczÄ…tkowo
+Pocz¹tkowo
 
 ```
 
@@ -318,12 +318,12 @@ def grid
 ```
 # ----------------------------------------------------------------------------------------------------------------------------------
 # Nested Iterators
-Smell wystepuje gdy nastÄ™pujÄ… po sobie dwie iteracje. NajczÄ™stszym sposobem eliminacji zapachu jest pogrupowanie metody.
+Smell wystepuje gdy nastêpuj¹ po sobie dwie iteracje. Najczêstszym sposobem eliminacji zapachu jest pogrupowanie metody.
 ```
 [27]:NestedIterators: Board#to_s contains iterators nested 2 deep
 ```
 
-PoczÄ…tkowo
+Pocz¹tkowo
 
 ```
 def to_s
@@ -365,8 +365,8 @@ def to_s
 # ----------------------------------------------------------------------------------------------------------------------------------
 # TooManyStatements 
 
-Zapach ten zazwyczaj powstaje gdy metoda jest za dÅ‚uga, gdyÅ¼ pojawia sie gdy metoda ma wiÄ™cej niÅ¼ 5 linii
-Å»eby wyeliminowaÄ‡ ten zapach najczÄ™Å›ciej rozbija sie metode na kilka poprzez grupowanie elementÃ³w wspÃ³lnych metody i wywoÅ‚ywanie ich z odpowiednimi argumentami
+Zapach ten zazwyczaj powstaje gdy metoda jest za d³uga, gdy¿ pojawia sie gdy metoda ma wiêcej ni¿ 5 linii
+¯eby wyeliminowaæ ten zapach najczêœciej rozbija sie metode na kilka poprzez grupowanie elementów wspólnych metody i wywo³ywanie ich z odpowiednimi argumentami
 
 ```
 [33]:[33]:TooManyStatements: Board#place_ship has approx 9 statements
@@ -473,7 +473,7 @@ Po:
 rules.rb
 
 # FeatureEnvy
-WystÃªpuje, gdy fragment kodu odwoluje sie do innego obiektu czesciej, niz sam do siebie.Takze gdy kilku klientÃ³w wykonuje te sama serie manipulacji na okreslonym typie obiektu. Wyelimonowanie tego smella najczÄ™Å›ciej rÃ³wnieÅ¼ nastÄ™puje po przegrupowaniu kodu i podzieleniu nba kilka metod
+Wystepuje, gdy fragment kodu odwoluje sie do innego obiektu czesciej, niz sam do siebie.Takze gdy kilku klientów wykonuje te sama serie manipulacji na okreslonym typie obiektu. Wyelimonowanie tego smella najczêœciej równie¿ nastêpuje po przegrupowaniu kodu i podzieleniu nba kilka metod
 
 ```
 [80, 83, 86, 87, 89, 91, 93, 98]:FeatureEnvy: AdvancedRules#shoot refers to 'targetCell' more than self (maybe move it to another class?)
@@ -788,7 +788,7 @@ def choose_target(player)
 # ----------------------------------------------------------------------------------------------------------------------------------
 
 ```	
-# UnusedParameters wystepuje gdy nie uÅ¼ywamy parametru podanego w argumencie metody
+# UnusedParameters wystepuje gdy nie u¿ywamy parametru podanego w argumencie metody
 
 X  [28]:UnusedParameters: BaseRules#choose_target has unused parameter 'player'
 X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'shooterCell' 
@@ -821,7 +821,7 @@ def shoot()
 game.rb 
 
 # FeatureEnvy
-WystÃªpuje, gdy fragment kodu odwoluje sie do innego obiektu czesciej, niz sam do siebie.Takze gdy kilku klientÃ³w wykonuje te sama serie manipulacji na okreslonym typie obiektu. Wyelimonowanie tego smella najczÄ™Å›ciej rÃ³wnieÅ¼ nastÄ™puje po przegrupowaniu kodu i podzieleniu nba kilka metod
+Wystepuje, gdy fragment kodu odwoluje sie do innego obiektu czesciej, niz sam do siebie.Takze gdy kilku klientów wykonuje te sama serie manipulacji na okreslonym typie obiektu. Wyelimonowanie tego smella najczêœciej równie¿ nastêpuje po przegrupowaniu kodu i podzieleniu nba kilka metod
 
 ```
 X [165, 166]:FeatureEnvy: Game#get_position_input refers to 'input' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
@@ -951,8 +951,8 @@ def play
 # ----------------------------------------------------------------------------------------------------------------------------------
  ```
 [70]:TooManyStatements: Game#play_rounds has approx 8 statements
-Zapach ten zazwyczaj powstaje gdy metoda jest za dÅ‚uga, gdyÅ¼ pojawia sie gdy metoda ma wiÄ™cej niÅ¼ 5 linii
-Å»eby wyeliminowaÄ‡ ten zapach najczÄ™Å›ciej rozbija sie metode na kilka poprzez grupowanie elementÃ³w wspÃ³lnych metody i wywoÅ‚ywanie ich z odpowiednimi argumentami
+Zapach ten zazwyczaj powstaje gdy metoda jest za d³uga, gdy¿ pojawia sie gdy metoda ma wiêcej ni¿ 5 linii
+¯eby wyeliminowaæ ten zapach najczêœciej rozbija sie metode na kilka poprzez grupowanie elementów wspólnych metody i wywo³ywanie ich z odpowiednimi argumentami
  ```
 
 Przed:
