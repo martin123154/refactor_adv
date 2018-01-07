@@ -34,7 +34,7 @@ board - 10 smells
   [37]:ControlParameter: Board#place_ship is controlled by argument 'orientation' [https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md]
   [51]:ControlParameter: Board#valid_coordinates? is controlled by argument 'orientation' [https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md]
   [33, 50, 59, 75]:DataClump: Board takes parameters ['orientation', 'ship', 'start_position'] to 4 methods [https://github.com/troessner/reek/blob/master/docs/Data-Clump.md]
-  [27]:NestedIterators: Board#to_s contains iterators nested 2 deep [https://github.com/troessner/reek/blob/master/docs/Nested-Iterators.md]
+X  [27]:NestedIterators: Board#to_s contains iterators nested 2 deep [https://github.com/troessner/reek/blob/master/docs/Nested-Iterators.md]
  X [37, 51, 65]:RepeatedConditional: Board tests 'orientation == :horizontal' at least 3 times [https://github.com/troessner/reek/blob/master/docs/Repeated-Conditional.md]
   [59]:TooManyStatements: Board#check_clearance? has approx 7 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
  X [33]:TooManyStatements: Board#place_ship has approx 9 statements [https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md]
@@ -259,6 +259,52 @@ def grid
 	end
 	
 ```
+# ----------------------------------------------------------------------------------------------------------------------------------
+# Nested Iterators
+Smell wystepuje gdy następują po sobie dwie iteracje. Najczęstszym sposobem eliminacji zapachu jest pogrupowanie metody.
+```
+[27]:NestedIterators: Board#to_s contains iterators nested 2 deep
+```
+
+Początkowo
+
+```
+def to_s
+		row_letter = ('A'..'Z').to_a
+		i = 0
+		puts "  1 2 3 4 5 6 7 8 9 10"
+		@grid.each do |row|
+			print row_letter[i] + ' '
+			row.each {|cell| print cell.to_s + ' '}
+			print "\n"
+			i += 1
+		end
+	end
+
+```
+
+Finalnie:
+
+```
+def to_s
+		row_letter = ('A'..'Z').to_a
+		@i = 0
+		puts "  1 2 3 4 5 6 7 8 9 10"
+		@grid.each do |row|
+		print_coordinates(row_letter,i,row)
+		end
+	end
+	
+	def print_coordinates(row_letter,i,row)
+			print row_letter[i] + ' '
+			row.each {|cell| print cell.to_s + ' '}
+			print "\n"
+			@i += 1
+	end
+	
+	
+```
+	
 # ----------------------------------------------------------------------------------------------------------------------------------
 # TooManyStatements 
 
