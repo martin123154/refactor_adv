@@ -82,13 +82,13 @@ X  [101]:TooManyStatements: Game#opponent_round has approx 8 statements [https:/
 
 grid.rb
 # Attribute
-Smell ten pojawia sie gdy u¿yjemy attr_accessor na pocz¹tku klasy, który s³u¿y jako getter i setter. Rozwi¹zanaiem problemu jest napisanie getterów i setterów metodami. 
+Smell ten pojawia sie gdy uÂ¿yjemy attr_accessor na poczÂ¹tku klasy, ktÃ³ry sÂ³uÂ¿y jako getter i setter. RozwiÂ¹zanaiem problemu jest napisanie getterÃ³w i setterÃ³w metodami. 
 
 ```
  X[3]:Attribute: GridCell#ship is a writable attribute 
   X[3]:Attribute: GridCell#status is a writable attribute
   ```
-Pocz¹tkowo
+PoczÂ¹tkowo
 
 ```
 
@@ -119,14 +119,14 @@ Finalnie:
 # ----------------------------------------------------------------------------------------------------------------------------------
 ship.rb
 # InstanceVariableAssumption
-Zmienne instancyjne nie powinny byæ ustawione lub obecne poza definicj¹ klase, dlatego trzeba je zdefiniowaæ w klasie
+Zmienne instancyjne nie powinny byÃ¦ ustawione lub obecne poza definicjÂ¹ klase, dlatego trzeba je zdefiniowaÃ¦ w klasie
 
 ```
  X [1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@fill_char' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
   X[1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@length' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
 ```
 
-Pocz¹tkowo
+PoczÂ¹tkowo
 
 ```
 attr_reader :length, :hits, :fill_char
@@ -137,7 +137,7 @@ attr_reader :length, :hits, :fill_char
 ```
 
 
-Finalnie nale¿y dodac @length = length, @fill_char = fill_char by problem znikn¹³
+Finalnie naleÂ¿y dodac @length = length, @fill_char = fill_char by problem zniknÂ¹Â³
 	
 	
 ```
@@ -153,7 +153,7 @@ Finalnie nale¿y dodac @length = length, @fill_char = fill_char by problem znikn¹
 # ----------------------------------------------------------------------------------------------------------------------------------
 player.rb
 # Attribute
- Smell ten pojawia sie gdy u¿yjemy attr_accessor na pocz¹tku klasy, który s³u¿y jako getter i setter. Rozwi¹zanaiem problemu jest napisanie getterów i setterów metodami.
+ Smell ten pojawia sie gdy uÂ¿yjemy attr_accessor na poczÂ¹tku klasy, ktÃ³ry sÂ³uÂ¿y jako getter i setter. RozwiÂ¹zanaiem problemu jest napisanie getterÃ³w i setterÃ³w metodami.
 
 ```
 [10]:Attribute: Player#name is a writable attribute
@@ -195,7 +195,7 @@ def status
 ```
 
 # Nested Iterators
-Smell wystepuje gdy nastêpuj¹ po sobie dwie iteracje. Najczêstszym sposobem eliminacji zapachu jest pogrupowanie metody. 
+Smell wystepuje gdy nastÃªpujÂ¹ po sobie dwie iteracje. NajczÃªstszym sposobem eliminacji zapachu jest pogrupowanie metody. 
 
  ```
 [38, 41]:NestedIterators: Player#print_boards contains iterators nested 2 deep 
@@ -256,15 +256,15 @@ end
 board.rb
 
 # RepeatedConditional
-Zbyt czêsto w klasie u¿yty taki sam warunek (maksymalnie mo¿e byc on u¿yty dwa razy)
+Zbyt czÃªsto w klasie uÂ¿yty taki sam warunek (maksymalnie moÂ¿e byc on uÂ¿yty dwa razy)
 
 ```
  [37, 51, 65]:RepeatedConditional: Board tests 'orientation == :horizontal' at least 3 times 
  ```
  
- Rozwi¹zanie: odwrócenie instrukcji warunkowej w jednym z przypadków
+ RozwiÂ¹zanie: odwrÃ³cenie instrukcji warunkowej w jednym z przypadkÃ³w
  
- Pocz¹tkowo:
+ PoczÂ¹tkowo:
  ```
  if orientation == :horizontal
 				self.grid[row][column].ship = ship
@@ -291,12 +291,12 @@ Finalnie:
  ```
  # ----------------------------------------------------------------------------------------------------------------------------------
  # Attribute
- Smell ten pojawia sie gdy u¿yjemy attr_accessor na pocz¹tku klasy, który s³u¿y jako getter i setter. Rozwi¹zanaiem problemu jest napisanie getterów i setterów metodami.
+ Smell ten pojawia sie gdy uÂ¿yjemy attr_accessor na poczÂ¹tku klasy, ktÃ³ry sÂ³uÂ¿y jako getter i setter. RozwiÂ¹zanaiem problemu jest napisanie getterÃ³w i setterÃ³w metodami.
  ```
 [10]:Attribute: Board#grid is a writable attribute
 ```
 
-Pocz¹tkowo
+PoczÂ¹tkowo
 
 ```
 
@@ -318,12 +318,12 @@ def grid
 ```
 # ----------------------------------------------------------------------------------------------------------------------------------
 # Nested Iterators
-Smell wystepuje gdy nastêpuj¹ po sobie dwie iteracje. Najczêstszym sposobem eliminacji zapachu jest pogrupowanie metody.
+Smell wystepuje gdy nastÃªpujÂ¹ po sobie dwie iteracje. NajczÃªstszym sposobem eliminacji zapachu jest pogrupowanie metody.
 ```
 [27]:NestedIterators: Board#to_s contains iterators nested 2 deep
 ```
 
-Pocz¹tkowo
+PoczÂ¹tkowo
 
 ```
 def to_s
@@ -365,8 +365,8 @@ def to_s
 # ----------------------------------------------------------------------------------------------------------------------------------
 # TooManyStatements 
 
-Zapach ten zazwyczaj powstaje gdy metoda jest za d³uga, gdy¿ pojawia sie gdy metoda ma wiêcej ni¿ 5 linii
-¯eby wyeliminowaæ ten zapach najczêœciej rozbija sie metode na kilka poprzez grupowanie elementów wspólnych metody i wywo³ywanie ich z odpowiednimi argumentami
+Zapach ten zazwyczaj powstaje gdy metoda jest za dÂ³uga, gdyÂ¿ pojawia sie gdy metoda ma wiÃªcej niÂ¿ 5 linii
+Â¯eby wyeliminowaÃ¦ ten zapach najczÃªÂœciej rozbija sie metode na kilka poprzez grupowanie elementÃ³w wspÃ³lnych metody i wywoÂ³ywanie ich z odpowiednimi argumentami
 
 ```
 [33]:[33]:TooManyStatements: Board#place_ship has approx 9 statements
@@ -473,7 +473,7 @@ Po:
 rules.rb
 
 # FeatureEnvy
-Wystepuje, gdy fragment kodu odwoluje sie do innego obiektu czesciej, niz sam do siebie.Takze gdy kilku klientów wykonuje te sama serie manipulacji na okreslonym typie obiektu. Wyelimonowanie tego smella najczêœciej równie¿ nastêpuje po przegrupowaniu kodu i podzieleniu nba kilka metod
+Wystepuje, gdy fragment kodu odwoluje sie do innego obiektu czesciej, niz sam do siebie.Takze gdy kilku klientÃ³w wykonuje te sama serie manipulacji na okreslonym typie obiektu. Wyelimonowanie tego smella najczÃªÂœciej rÃ³wnieÂ¿ nastÃªpuje po przegrupowaniu kodu i podzieleniu nba kilka metod
 
 ```
 [80, 83, 86, 87, 89, 91, 93, 98]:FeatureEnvy: AdvancedRules#shoot refers to 'targetCell' more than self (maybe move it to another class?)
@@ -788,7 +788,7 @@ def choose_target(player)
 # ----------------------------------------------------------------------------------------------------------------------------------
 
 ```	
-# UnusedParameters wystepuje gdy nie u¿ywamy parametru podanego w argumencie metody
+# UnusedParameters wystepuje gdy nie uÂ¿ywamy parametru podanego w argumencie metody
 
 X  [28]:UnusedParameters: BaseRules#choose_target has unused parameter 'player'
 X  [24]:UnusedParameters: BaseRules#shoot has unused parameter 'shooterCell' 
@@ -821,7 +821,7 @@ def shoot()
 game.rb 
 
 # FeatureEnvy
-Wystepuje, gdy fragment kodu odwoluje sie do innego obiektu czesciej, niz sam do siebie.Takze gdy kilku klientów wykonuje te sama serie manipulacji na okreslonym typie obiektu. Wyelimonowanie tego smella najczêœciej równie¿ nastêpuje po przegrupowaniu kodu i podzieleniu nba kilka metod
+Wystepuje, gdy fragment kodu odwoluje sie do innego obiektu czesciej, niz sam do siebie.Takze gdy kilku klientÃ³w wykonuje te sama serie manipulacji na okreslonym typie obiektu. Wyelimonowanie tego smella najczÃªÂœciej rÃ³wnieÂ¿ nastÃªpuje po przegrupowaniu kodu i podzieleniu nba kilka metod
 
 ```
 X [165, 166]:FeatureEnvy: Game#get_position_input refers to 'input' more than self (maybe move it to another class?) [https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md]
@@ -863,6 +863,74 @@ def get_position_input
  ```
  
 
+ ```
+[179, 185, 187, 192, 194]:FeatureEnvy: Game#deploy_opp_ship refers to 'opponent' more than self (maybe move it to another class?)
+ ```
+ 
+ Przed:
+ 
+  ```
+  
+  
+	#randomly place opponent's ships
+	def deploy_opp_ship(opponent, ship)
+		board = opponent.board
+		valid = false
+		while valid == false
+			orientation = [:horizontal, :vertical].sample
+			if orientation == :horizontal
+				rows = Board::ROW
+				columns = Board::COLUMN[0..9 - opponent.send(ship).length]
+			else
+				rows = Board::ROW[0..9 - opponent.send(ship).length]
+				columns = Board::COLUMN
+			end
+			position = get_opp_position(rows.sample, columns.sample)
+
+			if(board.check_ship_placement?(opponent.send(ship), position, orientation))
+				valid = true
+				board.place_ship(opponent.send(ship), position, orientation)
+			end
+		end
+	end
+
+ ```
+ 
+ Po:
+ 
+ ```
+ #randomly place opponent's ships
+	def deploy_opp_ship(opponent, ship)
+		board = opponent.board
+		@valid = false
+		while valid == false
+			orientation = [:horizontal, :vertical].sample
+			position = deploy_opp_ship_orientation(ship,orientation,board)
+			
+		end
+	end
+	
+	def deploy_opp_ship_orientation(ship,orientation,board)
+			if orientation == :horizontal
+				rows = Board::ROW
+				columns = Board::COLUMN[0..9 - opponent.send(ship).length]
+			else
+				rows = Board::ROW[0..9 - opponent.send(ship).length]
+				columns = Board::COLUMN
+			end
+		position = get_opp_position(rows.sample, columns.sample)
+		place_opponent_ship(ship,board,position,orientation)
+	end
+	
+	def place_opponent_ship(ship,board,position,orientation)
+		if(board.check_ship_placement?(opponent.send(ship), position, orientation))
+		@valid = true
+		board.place_ship(opponent.send(ship), position, orientation)
+		end
+	end
+  ```
+	
+	
 	
 # ----------------------------------------------------------------------------------------------------------------------------------
  ```
@@ -951,8 +1019,8 @@ def play
 # ----------------------------------------------------------------------------------------------------------------------------------
  ```
 [70]:TooManyStatements: Game#play_rounds has approx 8 statements
-Zapach ten zazwyczaj powstaje gdy metoda jest za d³uga, gdy¿ pojawia sie gdy metoda ma wiêcej ni¿ 5 linii
-¯eby wyeliminowaæ ten zapach najczêœciej rozbija sie metode na kilka poprzez grupowanie elementów wspólnych metody i wywo³ywanie ich z odpowiednimi argumentami
+Zapach ten zazwyczaj powstaje gdy metoda jest za dÂ³uga, gdyÂ¿ pojawia sie gdy metoda ma wiÃªcej niÂ¿ 5 linii
+Â¯eby wyeliminowaÃ¦ ten zapach najczÃªÂœciej rozbija sie metode na kilka poprzez grupowanie elementÃ³w wspÃ³lnych metody i wywoÂ³ywanie ich z odpowiednimi argumentami
  ```
 
 Przed:
