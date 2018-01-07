@@ -814,6 +814,8 @@ def get_position_input
  ```
 [18]:TooManyStatements: Game#play has approx 6 statements 
  ```
+ 
+  ```
 def play
 		puts "\nLet's play some Battleship!\n\n"
 		set_player
@@ -824,6 +826,10 @@ def play
 	end
 
  ```
+ 
+ Po:
+ 
+  ```
 	
 	def play
 		puts "\nLet's play some Battleship!\n\n"
