@@ -137,7 +137,7 @@ attr_reader :length, :hits, :fill_char
 ```
 
 
-	Finalnie należy dodac @length = length, @fill_char = fill_char by problem zniknął
+Finalnie należy dodac @length = length, @fill_char = fill_char by problem zniknął
 	
 	
 ```
@@ -150,12 +150,12 @@ attr_reader :length, :hits, :fill_char
 	end
 ```
 
+# ----------------------------------------------------------------------------------------------------------------------------------
 player.rb
 # Attribute
  Smell ten pojawia sie gdy użyjemy attr_accessor na początku klasy, który służy jako getter i setter. Rozwiązanaiem problemu jest napisanie getterów i setterów metodami.
 
 ```
-# ----------------------------------------------------------------------------------------------------------------------------------
 [10]:Attribute: Player#name is a writable attribute
  X[10]:Attribute: Player#ships_left is a writable attribute
  
@@ -323,8 +323,9 @@ def place_ship(ship, start_position, orientation)
 	end
 ```
 
-```
 # ----------------------------------------------------------------------------------------------------------------------------------
+```
+
 [21]:TooManyStatements: Board#to_s has approx 9 statements
 ```
 
@@ -806,15 +807,12 @@ def get_position_input
 		puts "-------------------------------------\n\n"
 	end
 	
-	 ```
+```
 
 # ----------------------------------------------------------------------------------------------------------------------------------
- ```
  
-[18]:TooManyStatements: Game#play has approx 6 statements 
-
  ```
-
+[18]:TooManyStatements: Game#play has approx 6 statements 
  ```
 def play
 		puts "\nLet's play some Battleship!\n\n"
