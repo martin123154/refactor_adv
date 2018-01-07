@@ -82,13 +82,13 @@ X  [101]:TooManyStatements: Game#opponent_round has approx 8 statements [https:/
 
 grid.rb
 ## Attribute
-Smell ten pojawia sie gdy u¿yjemy attr_accessor na pocz¹tku klasy, który s³u¿y jako getter i setter. Rozwi¹zanaiem problemu jest napisanie getterów i setterów metodami. 
+Smell ten pojawia sie gdy u¿yjemy attr_accessor na początku klasy, który służy jako getter i setter. Rozwi¹zanaiem problemu jest napisanie getterów i setterów metodami. 
 
 ```
  X[3]:Attribute: GridCell#ship is a writable attribute 
   X[3]:Attribute: GridCell#status is a writable attribute
   ```
-Pocz¹tkowo
+Począ¹tkowo
 
 ```
 
@@ -119,14 +119,14 @@ Finalnie:
 # ----------------------------------------------------------------------------------------------------------------------------------
 ship.rb
 ## InstanceVariableAssumption
-Zmienne instancyjne nie powinny byæ ustawione lub obecne poza definicj¹ klase, dlatego trzeba je zdefiniowaæ w klasie
+Zmienne instancyjne nie powinny być ustawione lub obecne poza definicją klasy, dlatego trzeba je zdefiniowaæ w klasie
 
 ```
  X [1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@fill_char' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
   X[1]:InstanceVariableAssumption: Ship assumes too much for instance variable '@length' [https://github.com/troessner/reek/blob/master/docs/Instance-Variable-Assumption.md]
 ```
 
-Pocz¹tkowo
+Początkowo
 
 ```
 attr_reader :length, :hits, :fill_char
@@ -137,7 +137,7 @@ attr_reader :length, :hits, :fill_char
 ```
 
 
-Finalnie nale¿y dodac @length = length, @fill_char = fill_char by problem znikn¹³
+Finalnie nale¿y dodac @length = length, @fill_char = fill_char by problem zniknął
 	
 	
 ```
@@ -153,7 +153,7 @@ Finalnie nale¿y dodac @length = length, @fill_char = fill_char by problem znikn
 # ----------------------------------------------------------------------------------------------------------------------------------
 player.rb
 ## Attribute
- Smell ten pojawia sie gdy u¿yjemy attr_accessor na pocz¹tku klasy, który s³u¿y jako getter i setter. Rozwi¹zanaiem problemu jest napisanie getterów i setterów metodami.
+ Smell ten pojawia sie gdy u¿yjemy attr_accessor na początku klasy, który służy jako getter i setter. Rozwi¹zanaiem problemu jest napisanie getterów i setterów metodami. 
 
 ```
 [10]:Attribute: Player#name is a writable attribute
@@ -256,15 +256,15 @@ end
 board.rb
 
 ## RepeatedConditional
-Zbyt czêsto w klasie u¿yty taki sam warunek (maksymalnie mo¿e byc on u¿yty dwa razy)
+Zbyt często w klasie użyty taki sam warunek (maksymalnie może byc on użyty dwa razy)
 
 ```
  [37, 51, 65]:RepeatedConditional: Board tests 'orientation == :horizontal' at least 3 times 
  ```
  
- Rozwi¹zanie: odwrócenie instrukcji warunkowej w jednym z przypadków
+ Rozwiązanie: odwrócenie instrukcji warunkowej w jednym z przypadków
  
- Pocz¹tkowo:
+ Początkowo:
  ```
  if orientation == :horizontal
 				self.grid[row][column].ship = ship
@@ -291,7 +291,7 @@ Finalnie:
  ```
  # ----------------------------------------------------------------------------------------------------------------------------------
  # Attribute
- Smell ten pojawia sie gdy u¿yjemy attr_accessor na pocz¹tku klasy, który s³u¿y jako getter i setter. Rozwi¹zanaiem problemu jest napisanie getterów i setterów metodami.
+ Smell ten pojawia sie gdy u¿yjemy attr_accessor na pocz¹tku klasy, który służy jako getter i setter. Rozwiązaniem problemu jest napisanie getterów i setterów metodami.
  ```
 [10]:Attribute: Board#grid is a writable attribute
 ```
@@ -318,7 +318,7 @@ def grid
 ```
 # ----------------------------------------------------------------------------------------------------------------------------------
 ## Nested Iterators
-Smell wystepuje gdy nastêpuj¹ po sobie dwie iteracje. Najczêstszym sposobem eliminacji zapachu jest pogrupowanie metody.
+Smell wystepuje gdy następują po sobie dwie iteracje. Najczêstszym sposobem eliminacji zapachu jest pogrupowanie metody.
 ```
 [27]:NestedIterators: Board#to_s contains iterators nested 2 deep
 ```
@@ -365,8 +365,8 @@ def to_s
 # ----------------------------------------------------------------------------------------------------------------------------------
 ## TooManyStatements 
 
-Zapach ten zazwyczaj powstaje gdy metoda jest za d³uga, gdy¿ pojawia sie gdy metoda ma wiêcej ni¿ 5 linii
-¯eby wyeliminowaæ ten zapach najczêciej rozbija sie metode na kilka poprzez grupowanie elementów wspólnych metody i wywo³ywanie ich z odpowiednimi argumentami
+Zapach ten zazwyczaj powstaje gdy metoda jest za d³uga, gdy¿ pojawia sie gdy metoda ma więcej niż 5 linii
+żeby wyeliminowaæ ten zapach najczęściej rozbija sie metode na kilka poprzez grupowanie elementów wspólnych metody i wywoływanie ich z odpowiednimi argumentami
 
 ```
 [33]:[33]:TooManyStatements: Board#place_ship has approx 9 statements
@@ -473,7 +473,7 @@ Po:
 rules.rb
 
 ## FeatureEnvy
-Wystepuje, gdy fragment kodu odwoluje sie do innego obiektu czesciej, niz sam do siebie.Takze gdy kilku klientów wykonuje te sama serie manipulacji na okreslonym typie obiektu. Wyelimonowanie tego smella najczêciej równie¿ nastêpuje po przegrupowaniu kodu i podzieleniu nba kilka metod
+Wystepuje, gdy fragment kodu odwoluje sie do innego obiektu czesciej, niz sam do siebie.Takze gdy kilku klientów wykonuje te sama serie manipulacji na okreslonym typie obiektu. Wyelimonowanie tego smella najczęściej równie¿ nastêpuje po przegrupowaniu kodu i podzieleniu nba kilka metod
 
 ```
 [80, 83, 86, 87, 89, 91, 93, 98]:FeatureEnvy: AdvancedRules#shoot refers to 'targetCell' more than self (maybe move it to another class?)
